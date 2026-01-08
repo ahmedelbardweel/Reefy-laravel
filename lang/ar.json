@@ -1,0 +1,612 @@
+{
+    "home": "الرئيسية",
+    "dashboard": "لوحة التحكم",
+    "tasks": "المهام",
+    "market": "السوق",
+    "market.unknown_seller": "بائع غير معروف",
+    "inventory": "المستودع",
+    "reports": "التقارير",
+    "settings": "الإعدادات",
+    "profile": "حسابي",
+    "community": "المجتمع",
+    "farm": "مزرعتي",
+    "welcome": "مرحباً",
+    "logout": "تسجيل الخروج",
+    "nav.chat": "المحادثات",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "crops_status": "حالة المحاصيل",
+    "view_all": "عرض الكل",
+    "add": "إضافة",
+    "add_new": "إضافة جديد",
+    "add_crop": "إضافة محصول",
+    "add_task": "إضافة مهمة",
+    "add_item": "إضافة عنصر",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "save": "حفظ",
+    "view_details": "عرض التفاصيل",
+    "cancel": "إلغاء",
+    "search": "ابحث عن منتج، صنف، أو معدات...",
+    "next": "التالي",
+    "confirm_delete": "حذف؟",
+    "weather.title": "حالة الطقس",
+    "weather.humidity": "رطوبة",
+    "weather.wind_speed": "كم/س",
+    "weather.alert": "أحوال جوية قاسية",
+    "water_consumption": "استهلاك المياه",
+    "irrigate": "ري",
+    "harvest": "حصاد",
+    "weekly": "أسبوعي",
+    "liters": "لتر",
+    "upcoming_tasks": "المهام القادمة",
+    "no_tasks": "لا يوجد مهام قادمة",
+    "today": "اليوم",
+    "tomorrow": "غداً",
+    "weather.forecast": "التوقعات",
+    "weather.temperature": "درجة الحرارة",
+    "dashboard.urgent_alerts": "تنبيهات عاجلة",
+    "dashboard.remaining_tasks": "المهام المتبقية",
+    "dashboard.crop_overview": "نظرة عامة على المحاصيل",
+    "dashboard.my_crops": "محاصيلي",
+    "dashboard.welcome": "أهلاً بك، يا :name 👋",
+    "dashboard.welcome_desc": "إليك ملخص لحالة مزرعتك اليوم.",
+    "crop.days_to_harvest": "يوم للحصاد",
+    "crop.no_crops": "لا توجد محاصيل",
+    "crop.status.excellent": "ممتازة",
+    "crop.status.good": "جيدة",
+    "crop.status.warning": "بحاجة لاهتمام",
+    "crop.status.infected": "مصابة",
+    "task.title": "عنوان المهمة",
+    "task.description": "الوصف",
+    "task.due_date": "تاريخ الاستحقاق",
+    "task.priority": "الأولوية",
+    "task.status": "الحالة",
+    "task.category": "الفئة",
+    "task.crop_related": "المحصول المرتبط",
+    "task.create_task": "إنشاء مهمة",
+    "task.update_task": "تحديث المهمة",
+    "task.priority.high": "عالية",
+    "task.priority.medium": "متوسطة",
+    "task.priority.low": "منخفضة",
+    "task.status.pending": "معلقة",
+    "task.status.in_progress": "قيد التنفيذ",
+    "task.status.completed": "مكتملة",
+    "task.unit": "مهمة",
+    "task.category.irrigation": "ري",
+    "task.category.fertilization": "تسميد",
+    "task.category.harvest": "حصاد",
+    "task.category.inspection": "فحص",
+    "task.category.other": "أخرى",
+    "tasks.filter.today": "اليوم",
+    "tasks.filter.tomorrow": "غداً",
+    "tasks.filter.week": "هذا الأسبوع",
+    "tasks.filter.overdue": "متأخرة",
+    "tasks.filter.completed": "مكتملة",
+    "crops.title": "إدارة المحاصيل",
+    "crops.search_placeholder": "بحث عن محصول...",
+    "crops.filter.all": "الكل",
+    "crops.filter.needs_water": "يحتاج ري",
+    "crops.filter.harvest_soon": "الحصاد قريباً",
+    "crops.filter.infected": "مصاب",
+    "crops.planting_date": "تاريخ الزراعة",
+    "crops.harvest_date": "تاريخ الحصاد المتوقع",
+    "crops.water_level": "مستوى الري",
+    "crops.growth_stage": "مرحلة النمو",
+    "crops.field_name": "الحقل / المنطقة",
+    "crops.select_field": "-- اختر الحقل --",
+    "crops.select_type": "-- اختر النوع --",
+    "crops.select_crop": "-- اختر المحصول --",
+    "crops.type": "نوع المحصول",
+    "crops.name": "اسم المحصول",
+    "crops.image": "صورة المحصول",
+    "crops.custom_image_placeholder": "أو ضع رابط صورة خارجية",
+    "crops.add_crop": "إضافة المحصول",
+    "crops.farm_details": "تفاصيل الزراعة",
+    "inventory.title": "سوق / مستودع",
+    "cart": "السلة",
+    "chats": "المحادثات",
+    "inventory.my_items": "موادك المسجلة",
+    "inventory.total_items": "إجمالي العناصر",
+    "inventory.low_stock": "مخزون منخفض",
+    "inventory.stock_alert": "تنبيه المخزون",
+    "inventory.empty": "المخزون فارغ",
+    "inventory.featured_products": "المنتجات المميزة",
+    "inventory.buy": "شراء",
+    "inventory.category.all": "الكل",
+    "inventory.category.seeds": "بذور",
+    "inventory.category.fertilizers": "أسمدة",
+    "inventory.category.tools": "معدات",
+    "inventory.category.equipment": "أدوات",
+    "inventory.category.pesticides": "مبيدات",
+    "inventory.category.harvest": "إنتاج",
+    "inventory.tab.market": "السوق",
+    "inventory.tab.inventory": "المستودع",
+    "inventory.search_placeholder": "ابحث عن منتج، صنف، أو معدات...",
+    "inventory.reorder": "اعادة الطلب",
+    "inventory.sell_in_market": "بيع في السوق",
+    "inventory.product_details": "تفاصيل المنتج",
+    "inventory.available": "متوفر",
+    "inventory.per_unit": "للوحدة",
+    "inventory.quantity": "الكمية",
+    "inventory.seller": "البائع",
+    "inventory.call_now": "اتصل الآن",
+    "inventory.reviews": "التقييمات",
+    "inventory.your_rating": "تقييمك:",
+    "inventory.write_review_placeholder": "اكتب تعليقك (اختياري)...",
+    "inventory.add_review": "إضافة تقييم",
+    "inventory.no_reviews": "لا توجد تقييمات بعد",
+    "inventory.be_first_review": "كن أول من يقيم هذا المنتج!",
+    "inventory.related_products": "منتجات مشابهة",
+    "inventory.stock_available": "متاح",
+    "inventory.add_new_item": "إضافة عنصر جديد",
+    "inventory.add_item_desc": "أضف مدخلاتك ومعداتك لإدارة مخزونك بدقة",
+    "inventory.item_info": "بيانات العنصر",
+    "inventory.item_name": "اسم العنصر",
+    "inventory.category_label": "التصنيف",
+    "inventory.stock_details": "الكمية والمخزون",
+    "inventory.unit": "الوحدة",
+    "inventory.notes_optional": "ملاحظات (اختياري)",
+    "inventory.notes_placeholder": "أضف تفاصيل إضافية عن الصلاحية أو المصدر...",
+    "inventory.save_item": "حفظ العنصر",
+    "inventory.edit_item": "تعديل العنصر",
+    "inventory.update_item": "تحديث العنصر",
+    "inventory.sell_product": "بيع المنتج",
+    "inventory.available_qty": "المتوفر:",
+    "inventory.product_image": "صورة المنتج",
+    "inventory.current_image": "الصورة الحالية",
+    "inventory.no_image": "لا توجد صورة",
+    "inventory.upload_new_image": "رفع صورة جديدة (اختياري)",
+    "inventory.image_preferred": "يُفضل إضافة صورة للمنتج",
+    "inventory.sell_qty": "الكمية للبيع",
+    "inventory.price_sar": "السعر (ر.س)",
+    "inventory.additional_desc": "وصف إضافي (اختياري)",
+    "inventory.list_in_market": "عرض في السوق",
+    "reports.title": "التقارير",
+    "reports.page_title": "تقارير وتحليلات",
+    "reports.period.weekly": "أسبوعي",
+    "reports.period.monthly": "شهري",
+    "reports.period.quarterly": "فصلي",
+    "reports.period.yearly": "سنوي",
+    "reports.farm_summary": "ملخص المزرعة",
+    "reports.production": "الإنتاج",
+    "reports.total_production": "الإنتاج الكلي",
+    "reports.task_completion": "معدل إنجاز المهام",
+    "reports.crop_performance": "أداء المحاصيل",
+    "reports.crop_performance_desc": "مقارنة الإنتاج للموسم الحالي",
+    "reports.resources_expenses": "الموارد والمصروفات",
+    "reports.water": "المياه",
+    "reports.expenses": "المصروفات",
+    "reports.task_status": "حالة المهام",
+    "reports.kg": "كجم",
+    "reports.sar": "ر.س",
+    "reports.last_update_today": "آخر تحديث: اليوم",
+    "reports.vs_last_period": "عن السابق",
+    "reports.tasks_completed": "المهام المنجزة",
+    "reports.no_harvest_data": "لا توجد بيانات حصاد",
+    "reports.water_consumption": "استهلاك المياه",
+    "reports.liters_this_period": "لتر هذا الفترة",
+    "reports.status.improved": "تحسن",
+    "reports.status.increase": "زيادة",
+    "reports.operational_expenses": "المصروفات التشغيلية",
+    "reports.expenses_desc": "أسمدة، بذور، عمالة",
+    "reports.status.high": "مرتفع",
+    "reports.status.low": "منخفض",
+    "reports.task_status_desc": "توزيع المهام بين مكتملة، جارية، ومتأخرة",
+    "reports.recent_reports": "التقارير الأخيرة",
+    "reports.harvest_report": "تقرير الحصاد",
+    "reports.soil_analysis": "تحليل التربة الربع سنوي",
+    "settings.title": "الإعدادات",
+    "settings.edit_profile": "تعديل الملف الشخصي",
+    "settings.full_name": "الاسم الكامل",
+    "settings.farm_name": "اسم المزرعة",
+    "settings.save_changes": "حفظ التغييرات",
+    "settings.account": "الحساب",
+    "settings.change_password": "تغيير كلمة المرور",
+    "settings.current_password": "كلمة المرور الحالية",
+    "settings.new_password": "كلمة المرور الجديدة",
+    "settings.confirm_password": "تأكيد كلمة المرور",
+    "settings.password_min": "يجب أن تكون 8 أحرف على الأقل",
+    "settings.linked_accounts": "الحسابات المرتبطة",
+    "settings.preferences": "تفضيلات التطبيق",
+    "settings.language": "اللغة",
+    "settings.units": "وحدات القياس",
+    "settings.units_metric": "متري",
+    "settings.units_imperial": "إمبراطوري",
+    "settings.notifications": "الإشعارات",
+    "settings.weather_alerts": "تنبيهات الطقس",
+    "settings.irrigation_reminders": "تذكير الري",
+    "settings.crop_updates": "تحديثات المحاصيل",
+    "settings.support": "الدعم والمساعدة",
+    "settings.help_center": "مركز المساعدة",
+    "settings.privacy_policy": "سياسة الخصوصية",
+    "settings.version": "الإصدار",
+    "settings.view_intro": "عرض المقدمة",
+    "settings.security_tip": "نصيحة أمنية",
+    "settings.security_tip_desc": "استخدم كلمة مرور قوية تحتوي على أحرف كبيرة وصغيرة وأرقام ورموز",
+    "messages.success": "تم بنجاح",
+    "messages.error": "حدث خطأ ما",
+    "messages.profile_updated": "تم تحديث الملف الشخصي بنجاح",
+    "messages.password_changed": "تم تغيير كلمة المرور بنجاح",
+    "messages.password_incorrect": "كلمة المرور الحالية غير صحيحة",
+    "messages.saved": "تم الحفظ",
+    "onboarding.welcome.title": "مرحباً بك في",
+    "onboarding.welcome.desc": "نظام ذكي لإدارة مزرعتك<br>بكل سهولة وكفاءة",
+    "onboarding.community.title": "مجتمع المزارعين",
+    "onboarding.community.desc": "تواصل مع مزارعين آخرين<br>شارك خبراتك واطرح أسئلتك<br>استفد من تجارب الآخرين",
+    "onboarding.market.title": "السوق الإلكتروني",
+    "onboarding.market.desc": "بع منتجاتك مباشرة<br>اشترِ ما تحتاجه من مزارعين آخرين<br>أسعار عادلة وجودة مضمونة",
+    "onboarding.weather.title": "متابعة الطقس",
+    "onboarding.weather.desc": "توقعات دقيقة للطقس<br>تنبيهات للظروف الجوية القاسية<br>خطط مهامك بناءً على الطقس",
+    "onboarding.tasks.title": "المهام والري",
+    "onboarding.tasks.desc": "جدول مهامك الزراعية<br>تتبع عمليات الري والأسمدة<br>تذكير تلقائي بالمواعيد",
+    "onboarding.reports.title": "تقارير وإحصائيات",
+    "onboarding.reports.desc": "تتبع إنتاجك وأرباحك<br>إحصائيات تفصيلية لكل محصول<br>اتخذ قرارات مبنية على البيانات",
+    "onboarding.skip": "تخطي",
+    "onboarding.next": "التالي",
+    "onboarding.login": "سجّل دخول",
+    "auth.welcome_title": "أهلاً بك في مزرعتك",
+    "auth.welcome_desc": "إدارة مزرعتك تبدأ هنا. أنشئ حسابك للبدء في تتبع المحاصيل.",
+    "auth.tab.register": "تسجيل جديد",
+    "auth.tab.login": "تسجيل الدخول",
+    "auth.role.farmer": "مزارع",
+    "auth.role.farmer_desc": "أريد إدارة مزرعتي",
+    "auth.role.client": "عميل / تاجر",
+    "auth.role.client_desc": "أريد شراء محاصيل",
+    "auth.or_social": "أو تابع باستخدام",
+    "auth.placeholder.name": "أدخل اسمك الكامل",
+    "auth.email": "البريد الإلكتروني",
+    "auth.password": "كلمة المرور",
+    "auth.title": "تسجيل المزارع - تطبيق الزراعة",
+    "auth.name": "الاسم الكامل",
+    "auth.role": "نوع الحساب",
+    "auth.terms": "أوافق على",
+    "auth.terms_link": "شروط الخدمة",
+    "auth.privacy_link": "سياسة الخصوصية",
+    "auth.submit_register": "إنشاء حساب",
+    "auth.role_selection.title": "أهلاً بك! لنبدأ بتحديد هويتك",
+    "auth.role_selection.subtitle": "يرجى اختيار نوع الحساب للمتابعة في استخدام المنصة",
+    "auth.continue": "استمرار",
+    "auth.already_have_account": "هل لديك حساب بالفعل؟",
+    "auth.back": "رجوع",
+    "auth.create_account": "إنشاء حساب جديد",
+    "auth.register_desc": "انضم إلينا لتدير مزرعتك وتبيع محاصيلك وتتواصل مع التجار بكل سهولة وأمان.",
+    "auth.terms_agreement": "بإنشاء حساب، أنت توافق على",
+    "auth.secure_registration": "تسجيل آمن ومشفر 100%",
+    "auth.smart_farming": "زراعة ذكية",
+    "auth.testimonial_quote": "ساعدتني منصة المزارع في الوصول إلى عملاء جدد وتوسيع نطاق مبيعاتي بشكل لا يصدق.",
+    "auth.testimonial_author": "أحمد المحمد",
+    "auth.testimonial_role": "صاحب مزرعة النخيل",
+    "auth.submit_login": "تسجيل الدخول",
+    "js.prompt_water": "كم لتر ماء تريد استخدامه للري؟",
+    "js.enter_valid_number": "الرجاء إدخال رقم صحيح",
+    "js.irrigating": "جاري الري...",
+    "js.irrigate_success": "تم ري المحصول بنجاح!",
+    "js.irrigate_error": "حدث خطأ أثناء الري",
+    "js.harvest_confirm": "هل أنت متأكد من حصاد هذا المحصول؟ سيتم نقله إلى المخزون.",
+    "js.harvesting": "جاري الحصاد...",
+    "js.harvest_success": "تم الحصاد والنقل للمستودع، يمكنك بيعه من هناك متى شئت.",
+    "js.harvest_error": "حدث خطأ أثناء الحصاد",
+    "market.title": "سوق المزارعين",
+    "market.subtitle": "تصفح أحدث المحاصيل الطازجة",
+    "market.search_placeholder": "ابحث عن محصول، مزارع...",
+    "market.all": "الكل",
+    "market.category.vegetables": "خضروات",
+    "market.category.fruits": "فواكه",
+    "market.category.grains": "حبوب",
+    "market.category.dates": "تمور",
+    "market.category.honey": "عسل",
+    "market.unit": "كمية",
+    "currency": "₪",
+    "market.farmer": "مزارع",
+    "market.no_products": "لا توجد منتجات",
+    "market.no_products_desc": "لم يتم العثور على أي منتجات في السوق حالياً",
+    "cart.title": "سلة المشتريات",
+    "cart.items_count": "عناصر",
+    "cart.empty_title": "السلة فارغة",
+    "cart.empty_desc": "لم تقم بإضافة أي منتجات للسلة بعد. تصفح السوق واكتشف محاصيل طازجة.",
+    "cart.browse_market": "تصفح السوق",
+    "cart.total": "المجموع الكلي",
+    "cart.checkout": "إتمام الشراء",
+    "cart.action.negotiate": "تفاوض",
+    "cart.action.chat": "محادثة",
+    "cart.action.call": "اتصال",
+    "chat.title": "المحادثات & المفاوضات",
+    "chat.tab.chats": "المحادثات",
+    "chat.tab.negotiations": "المفاوضات",
+    "chat.no_chats_title": "لا توجد محادثات",
+    "chat.no_chats_desc": "ابدأ محادثة مع المزارعين أو الزبائن.",
+    "chat.no_negotiations_title": "لا توجد مفاوضات",
+    "chat.no_negotiations_desc": "ابدأ التفاوض على المنتجات من السوق لتظهر هنا.",
+    "negotiation.status.accepted": "تم الاتفاق",
+    "negotiation.status.negotiating": "تفاوض",
+    "chat.start_conversation": "بداية المحادثة...",
+    "unit.ton": "طن",
+    "community.subtitle": "تواصل، اسأل، وشارك خبرتك",
+    "community.my_profile": "صفحتي الشخصية",
+    "community.create_placeholder": "بم تفكر اليوم؟...",
+    "community.type.general": "عام",
+    "community.type.question": "سؤال",
+    "community.type.tip": "نصيحة",
+    "community.type.marketplace": "إعلان",
+    "community.select_product": "اختر المنتج الذي تريد الإعلان عنه:",
+    "community.no_products_inventory": "لا توجد منتجات في المستودع",
+    "community.filter.all": "الكل",
+    "community.filter.questions": "أسئلة",
+    "community.filter.tips": "نصائح",
+    "community.per_unit": "للوحدة",
+    "community.view_in_market": "شاهد في السوق",
+    "community.comment": "تعليق",
+    "community.no_posts": "لا توجد منشورات بعد",
+    "community.no_posts_desc": "كن أول من يشارك في المجتمع!",
+    "community.link_copied": "تم نسخ الرابط إلى الحافظة!",
+    "community.share_title": "شارك من مجتمع المزارعين",
+    "community.share_text": "تحقق من هذه المشاركة من مجتمع المزارعين!",
+    "profile.member_since": "عضو منذ",
+    "profile.posts_count": "مشاركة",
+    "profile.questions_count": "سؤال",
+    "profile.likes_count": "إعجاب",
+    "profile.recent_activity": "نشاطي الأخير",
+    "profile.no_posts": "لم تقم بالنشر بعد",
+    "profile.no_posts_desc": "شارك سؤالك الأول أو نصيحتك مع المجتمع!",
+    "community.comments_title": "التعليقات",
+    "community.reply": "رد",
+    "community.write_reply": "اكتب رداً...",
+    "community.no_comments": "لا توجد تعليقات بعد",
+    "community.first_comment": "كن أول من يعلق!",
+    "community.write_comment": "اكتب تعليقك...",
+    "community.post_title": "المشاركة",
+    "profile.setup.title": "إعداد الملف الشخصي",
+    "profile.setup.subtitle": "أكمل ملفك الشخصي لتظهر بشكل أفضل للمشترين",
+    "profile.setup.photos": "الصور الشخصية والمزرعة",
+    "profile.setup.avatar_label": "صورة المزارع",
+    "profile.setup.change_photo": "تغيير الصورة",
+    "profile.setup.cover_label": "صورة المزرعة الرئيسية",
+    "profile.setup.drag_drop": "اضغط للتحميل أو اسحب الصورة هنا",
+    "profile.setup.contact_info": "المعلومات الشخصية",
+    "profile.age": "العمر",
+    "profile.phone": "رقم الهاتف",
+    "profile.bio": "نبذة عنك",
+    "profile.bio_placeholder": "اكتب نبذة قصيرة عنك وعن مزرعتك...",
+    "profile.social_links": "روابط التواصل الاجتماعي",
+    "profile.setup.location": "موقع المزرعة",
+    "profile.setup.location_placeholder": "ابحث عن القرية، المدينة، أو المحافظة...",
+    "profile.setup.map_placeholder": "سيظهر الموقع على الخريطة هنا",
+    "profile.setup.save_continue": "حفظ ومتابعة",
+    "crops.create.title": "إضافة محصول جديد",
+    "crops.create.desc": "أدخل تفاصيل المحصول الجديد لإضافته إلى سجلات مزرعتك بدقة.",
+    "crops.save": "حفظ المحصول",
+    "crops.cancel": "إلغاء",
+    "crops.basic_info": "البيانات الأساسية",
+    "crops.logistics": "المواعيد والموقع",
+    "crops.type.vegetables": "خضروات",
+    "crops.type.fruits": "فواكه",
+    "crops.auto_calc": "تلقائي",
+    "crops.calc_note": "تم الحساب بناءً على متوسط دورة النمو",
+    "crops.default_image_note": "يتم استخدام صورة افتراضية بناءً على نوع المحصول. يمكنك تغييرها في أي وقت.",
+    "crops.change_image": "تغيير الصورة",
+    "crops.field_placeholder": "اختر الحقل...",
+    "crops.add_new_field": "إضافة حقل جديد",
+    "crops.create.subtitle": "أضف تفاصيل محصولك الجديد لإدارته وتتبعه بكفاءة",
+    "crops.create.image_section": "صورة المحصول",
+    "crops.create.upload_instruction": "اضغط للتحميل أو اسحب الصورة هنا",
+    "crops.create.details_section": "تفاصيل المحصول",
+    "crops.create.timeline_section": "الجدول الزمني",
+    "crops.show.active": "نشط",
+    "crops.show.variety": "الصنف",
+    "crops.show.planting_date_label": "تاريخ الزراعة",
+    "crops.show.edit_details": "تعديل التفاصيل",
+    "crops.show.harvest_action": "تسجيل حصاد جزئي",
+    "crops.show.progress_title": "التقدم نحو الحصاد",
+    "crops.show.days_remaining": "باقي :days يوم للحصاد المتوقع",
+    "crops.show.expected_harvest": "تاريخ الحصاد",
+    "crops.show.health": "صحة المحصول",
+    "crops.show.moisture": "رطوبة التربة",
+    "crops.show.temp": "درجة الحرارة",
+    "crops.show.status_excellent": "ممتاز",
+    "crops.show.status_stable": "مستقر",
+    "crops.show.status_low": "منخفضة قليلاً",
+    "crops.show.status_good": "مناسبة للمحصول",
+    "crops.show.update_status": "تحديث حالة المحصول",
+    "crops.show.update_desc": "كيف يبدو المحصول اليوم؟ تسجيل التحديثات يساعدنا في تقديم نصائح أفضل.",
+    "crops.show.status_water": "يحتاج ري",
+    "crops.show.status_pests": "إصابة بآفات",
+    "crops.show.status_heat": "إجهاد حراري",
+    "crops.show.add_note": "أضف ملاحظات إضافية هنا (اختياري)...",
+    "crops.show.save_update": "حفظ التحديث",
+    "crops.show.recommendations": "توصيات ذكية",
+    "crops.show.schedule_irrigation": "جدولة الري",
+    "crops.show.history": "سجل العمليات",
+    "crops.show.view_all": "عرض الكل",
+    "crops.show.quick_actions": "إجراءات سريعة",
+    "crops.show.sell_market": "عرض في السوق",
+    "auth.login": "تسجيل الدخول",
+    "auth.welcome_desc": "إدارة مزرعتك تبدأ هنا. سجل دخولك للبدء في تتبع المحاصيل.",
+    "auth.email": "البريد الإلكتروني",
+    "auth.password": "كلمة المرور",
+    "auth.submit_login": "تسجيل الدخول",
+    "auth.or_social": "أو تابع باستخدام",
+    "auth.register": "إنشاء حساب جديد",
+    "auth.secure_registration": "نظام ذكي لإدارة مزرعتك بكل سهولة وكفاءة.",
+    "auth.smart_farming": "زراعة ذكية",
+    "auth.testimonial_quote": "هذه المنصة حولت طريقة إدارتي للمحاصيل. الرؤى والنصائح لا تقدر بثمن!",
+    "auth.testimonial_author": "أحمد العلي",
+    "auth.testimonial_role": "مالك مزرعة",
+    "crops.edit.title": "تعديل المحصول",
+    "crops.edit.desc": "قم بتحديث معلومات المحصول والإعدادات",
+    "crops.save_changes": "حفظ التعديلات",
+    "crops.confirm_harvest": "هل أنت متأكد من حصاد هذا المحصول؟ سيتم نقله للمخزون.",
+    "crops.show.growth_report": "تقرير النمو الشهري",
+    "crops.sell_to_market_title": "عرض في السوق",
+    "price": "السعر",
+    "quantity": "الكمية",
+    "description": "الوصف",
+    "optional": "اختياري",
+    "currency": "ريال",
+    "kg": "كجم",
+    "liter": "لتر",
+    "days": "يوم",
+    "cancel": "إلغاء",
+    "list_in_market": "عرض في السوق",
+    "print": "طباعة",
+    "back": "رجوع",
+    "type": "النوع",
+    "duration": "المدة",
+    "reports.growth_report": "تقرير النمو الشهري",
+    "reports.current_status": "الحالة الحالية",
+    "reports.water_usage": "استهلاك الماء",
+    "reports.growth_rate": "معدل النمو",
+    "reports.expected_yield": "الإنتاج المتوقع",
+    "reports.growth_chart": "مخطط النمو",
+    "reports.chart_placeholder": "سيتم إضافة الرسم البياني قريباً",
+    "reports.activity_timeline": "الجدول الزمني للأنشطة",
+    "reports.generated_on": "تم إنشاؤه في",
+    "reports.smart_farming_platform": "منصة زراعة ذكية",
+    "crops.irrigation_title": "جدولة الري",
+    "crops.irrigation_amount": "كمية الماء",
+    "crops.irrigation_note": "سيتم تسجيل عملية الري في السجل",
+    "crops.confirm_irrigation": "تأكيد الري",
+    "crops.timeline.irrigation": "تم الري",
+    "crops.timeline.status_update": "تحديث الحالة",
+    "crops.timeline.planting": "بداية الزراعة",
+    "crops.activity_log_title": "سجل العمليات",
+    "crops.activity_log_desc": "جميع العمليات المسجلة لهذا المحصول",
+    "crops.no_activities": "لا توجد عمليات مسجلة بعد",
+    "total": "الإجمالي",
+    "operations": "عملية",
+    "page": "صفحة",
+    "of": "من",
+    "previous": "السابق",
+    "next": "التالي",
+    "crops.subtitle": "نظرة شاملة على جميع محاصيلك وحالتها الحالية",
+    "crops.add_new": "إضافة محصول جديد",
+    "crops.add_crop": "إضافة محصول",
+    "crops.stats.active": "المحاصيل النشطة",
+    "crops.stats.types": "نوع",
+    "crops.stats.harvest_soon": "الحصاد القادم",
+    "crops.stats.within_days": "خلال ٧ أيام",
+    "crops.stats.crops": "محاصيل",
+    "crops.stats.revenue": "الإيرادات المتوقعة",
+    "crops.filter.growing": "في طور النمو",
+    "crops.filter.ready_harvest": "جاهز للحصاد",
+    "crops.filter.sold": "تم البيع",
+    "crops.sort.newest": "الأحدث إضافة",
+    "crops.sort.harvest_soon": "الأقرب للحصاد",
+    "crops.sort.highest_value": "الأعلى قيمة",
+    "crops.status.growing": "في طور النمو",
+    "crops.status.ready_harvest": "جاهز للحصاد",
+    "crops.field": "قطعة أرض",
+    "crops.planted_date": "تاريخ الزراعة",
+    "crops.expected_harvest": "الحصاد المتوقع",
+    "crops.growth_progress": "تقدم النمو",
+    "crops.no_crops": "لا توجد محاصيل حالياً",
+    "crops.new_planting": "زراعة جديدة",
+    "crops.start_new_cycle": "ابدأ دورة زراعية جديدة لمحصول جديد",
+    "nav.dashboard": "لوحة القيادة",
+    "nav.crops": "المحاصيل",
+    "nav.market": "السوق",
+    "nav.tasks": "المهام",
+    "nav.inventory": "المخزون",
+    "nav.settings": "الإعدادات",
+    "nav.logout": "تسجيل الخروج",
+    "tasks.title": "جدول مهام المزرعة",
+    "tasks.subtitle": "تتبع وإنجاز المهام اليومية بكفاءة",
+    "tasks.add_new": "إضافة مهمة",
+    "tasks.alert_title": "تنبيه هام",
+    "tasks.alert_desc": "لديك :count مهام متأخرة تحتاج إلى انتباهك الفوري!",
+    "tasks.view_overdue": "عرض المتأخرات",
+    "tasks.filter.all": "الكل",
+    "tasks.filter.today": "اليوم",
+    "tasks.filter.tomorrow": "غداً",
+    "tasks.filter.overdue": "متأخرة",
+    "tasks.today_tasks": "مهام اليوم",
+    "tasks.priority.high": "أولوية عالية",
+    "tasks.priority.medium": "متوسطة",
+    "tasks.priority.low": "منخفضة",
+    "tasks.completed_at": "تم الإنجاز في :time",
+    "tasks.overdue_since": "مستحق منذ :days يوم",
+    "tasks.no_time": "بدون وقت",
+    "tasks.no_location": "بدون موقع",
+    "tasks.no_tasks": "لا توجد مهام حالياً",
+    "tasks.create_title": "إنشاء مهمة جديدة",
+    "tasks.create_subtitle": "أضف تفاصيل المهمة الجديدة لجدولتها في خطة المزرعة",
+    "tasks.form.task_details": "تفاصيل المهمة",
+    "tasks.form.task_name": "اسم المهمة",
+    "tasks.form.task_name_placeholder": "مثال: ري حقل الطماطم، تسميد البطاطس...",
+    "tasks.form.related_field": "الحقل المرتبط",
+    "tasks.form.select_field": "اختر الحقل...",
+    "tasks.form.task_type": "نوع المهمة",
+    "tasks.form.type_irrigation": "ري",
+    "tasks.form.type_fertilizer": "تسميد",
+    "tasks.form.type_harvest": "حصاد",
+    "tasks.form.type_maintenance": "صيانة",
+    "tasks.form.type_other": "أخرى",
+    "tasks.form.schedule": "الموعد والتوقيت",
+    "tasks.form.priority": "الأولوية",
+    "tasks.form.priority_high": "عالية",
+    "tasks.form.priority_medium": "متوسطة",
+    "tasks.form.priority_low": "منخفضة",
+    "tasks.form.additional_notes": "ملاحظات إضافية",
+    "tasks.form.notes_placeholder": "أضف أي تفاصيل أخرى هنا...",
+    "tasks.form.cancel": "إلغاء",
+    "tasks.form.save": "حفظ المهمة",
+    "tasks.form.notification_hint": "سيتم إشعار العمال المعينين فور حفظ المهمة.",
+    "dashboard.alerts": "التنبيهات",
+    "dashboard.alert_title": "تنبيه هام",
+    "dashboard.alert_desc": "يرجى التحقق من المهام المتأخرة وصيانة المعدات.",
+    "weather.km_h": "كم/س",
+    "dashboard.tasks_today": "مهام اليوم",
+    "dashboard.no_tasks": "لا توجد مهام اليوم",
+    "market.title": "سوق المزارعين",
+    "market.subtitle": "تصفح أحدث المنتجات والمعدات الزراعية من أفضل الموردين",
+    "market.search_placeholder": "ابحث عن بذور، أسمدة، معدات...",
+    "market.nav.home": "الرئيسية",
+    "market.nav.my_products": "منتجاتي",
+    "market.nav.orders": "الطلبات",
+    "market.filters.title": "تصفية النتائج",
+    "market.filters.clear": "مسح الكل",
+    "market.filters.price": "السعر",
+    "market.filters.categories": "الفئات",
+    "market.filters.rating": "التقييم",
+    "market.stats.total_products": "إجمالي المنتجات",
+    "market.stats.offers": "العروض الحالية",
+    "market.stats.stock_alerts": "تنبيهات المخزون",
+    "market.load_more": "عرض المزيد من المنتجات",
+    "market.btn.add": "أضف للسلة",
+    "inventory.mode_title": "مخزوني",
+    "inventory.subtitle": "إدارة المخزون والموارد الخاصة بمزرعتك",
+    "inventory.edit": "تعديل",
+    "inventory.delete": "حذف",
+    "inventory.sell": "عرض للبيع",
+    "inventory.empty": "المخزون فارغ",
+    "market.empty": "لا توجد منتجات في السوق حالياً",
+    "inventory.add_item": "إضافة عنصر جديد",
+    "orders.title": "طلباتي",
+    "orders.subtitle": "تتبع حالة طلبات الشراء الخاصة بمزرعتك",
+    "orders.browse_market": "تصفح السوق",
+    "orders.order_id": "رقم الطلب",
+    "orders.date": "تاريخ الطلب",
+    "orders.status": "الحالة",
+    "orders.total": "الإجمالي",
+    "orders.actions": "إجراءات",
+    "orders.details": "التفاصيل",
+    "orders.empty": "لا توجد طلبات سابقة",
+    "orders.empty_desc": "لم تقم بشراء أي منتجات من السوق بعد. ابدأ الآن بتصفح العروض!",
+    "orders.details_title": "تفاصيل الطلب",
+    "orders.items": "المنتجات",
+    "orders.seller": "البائع",
+    "orders.summary": "ملخص الطلب",
+    "orders.subtotal": "المجموع الفرعي",
+    "orders.tax": "الضريبة",
+    "orders.cancel": "إلغاء الطلب",
+    "orders.help": "المساعدة والدعم",
+    "cart.title": "سلة المشتريات",
+    "cart.items_count": "منتجات",
+    "cart.empty_title": "السلة فارغة",
+    "cart.empty_desc": "أضف بعض المنتجات من السوق للبدء في الشراء",
+    "cart.browse_market": "تصفح السوق",
+    "cart.checkout": "إتمام الشراء",
+    "cart.action.negotiate": "مفاوضة",
+    "cart.action.chat": "مراسلة",
+    "cart.action.call": "اتصال"
+}

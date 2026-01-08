@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'title' => 'My Orders',
+    'subtitle' => 'Track your farm purchase orders',
+    'active' => 'Active Orders',
+    'history' => 'Order History',
+    'search_placeholder' => 'Search by Order ID or Product...',
+    'status' => [
+        'placed' => 'Order Placed',
+        'processing' => 'Processing',
+        'shipped' => 'On the Way',
+        'delivered' => 'Delivered',
+        'cancelled' => 'Cancelled',
+    ],
+    'unknown_product' => 'Unknown Product',
+    'total' => 'Total',
+    'details' => 'Details',
+    'reorder' => 'Reorder',
+    'empty' => 'No orders yet',
+    'empty_desc' => 'You haven\'t placed any orders from the market yet.',
+    'browse_market' => 'Browse Market',
+    'order_id' => 'Order ID',
+    'date' => 'Date',
+    'actions' => 'Actions',
+    'items' => 'Items',
+    'details_title' => 'Order Details',
+    'seller' => 'Seller',
+    'subtotal' => 'Subtotal',
+    'tax' => 'Tax',
+    'cancel' => 'Cancel Order',
+    'help' => 'Help',
+];
