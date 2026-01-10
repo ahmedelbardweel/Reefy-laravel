@@ -111,9 +111,41 @@ class CropController extends Controller
         $crop = Crop::findOrFail($id);
         $irrigations = \App\Models\Irrigation::where('crop_id', $id)
             ->orderBy('created_at', 'desc')
-            ->take(3)
+            ->take(5)
             ->get();
-        return view('crops.show', compact('crop', 'irrigations'));
+            
+        // Calculate Progress
+        $plantingDate = \Carbon\Carbon::parse($crop->planting_date)->startOfDay();
+        $harvestDate = $crop->harvest_date ? \Carbon\Carbon::parse($crop->harvest_date)->startOfDay() : $plantingDate->copy()->addMonths(3); // Default 3 months if not set
+        $today = now()->startOfDay();
+        
+        $totalDays = $plantingDate->diffInDays($harvestDate) ?: 1; // Avoid divorce by zero
+        $daysPassed = $plantingDate->diffInDays($today);
+        
+        $progress = min(100, max(0, round(($daysPassed / $totalDays) * 100)));
+        $daysRemaining = max(0, $today->diffInDays($harvestDate, false));
+
+        // Smart Advice Logic
+        $smartAdvice = "";
+        $moisture = $crop->water_level ?? 50; // Default if null
+        
+        if ($moisture < 30) {
+            $smartAdvice = __('crops.show.recommendation_text', ['moisture' => $moisture . '%']);
+        } elseif ($crop->status === 'infected') {
+             $smartAdvice = "نلاحظ وجود علامات إصابة. نوصي بعزل المنطقة المصابة واستخدام مبيد حيوي مناسب فوراً.";
+        } else {
+             $smartAdvice = "الحالة العامة ممتازة. الرطوبة ($moisture%) في المستوى المثالي. استمر في جدول الري الحالي.";
+        }
+
+        // Generate Simulated "Real" Sensor Data (Since we don't have hardware connected)
+        // In a real app, this would come from a Sensor model
+        $sensorData = [
+            'moisture' => $moisture,
+            'temp' => 24 + rand(-2, 5), // Varies effectively around 24-29
+            'health' => $crop->status === 'excellent' ? 'Excellent' : ucfirst($crop->status)
+        ];
+
+        return view('crops.show', compact('crop', 'irrigations', 'progress', 'daysRemaining', 'smartAdvice', 'sensorData', 'harvestDate'));
     }
 
     // API & Web: Update crop
@@ -233,39 +265,6 @@ class CropController extends Controller
     {
         $crop = Crop::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
         return view('crops.growth-report', compact('crop'));
-    }
-
-    // Sell to Market (convert crop to product directly)
-    public function sellToMarket(Request $request, $id)
-    {
-        $crop = Crop::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
-
-        $validated = $request->validate([
-            'price' => 'required|numeric|min:0',
-            'quantity' => 'required|numeric|min:1',
-            'description' => 'nullable|string',
-        ]);
-
-        // Create Product directly from crop
-        \App\Models\Product::create([
-            'user_id' => auth()->id(),
-            'name' => $crop->name,
-            'category' => $crop->type ?? 'crops',
-            'price' => $validated['price'],
-            'stock_quantity' => $validated['quantity'],
-            'description' => $validated['description'] ?? 'محصول طازج من المزرعة',
-            'image_url' => $crop->image_url ?? 'https://placehold.co/400x300?text=' . urlencode($crop->name),
-            'is_market_listed' => true,
-        ]);
-
-        if ($request->wantsJson()) {
-            return response()->json([
-                'success' => true,
-                'message' => 'تم عرض المحصول في السوق بنجاح'
-            ]);
-        }
-
-        return redirect()->route('crops.show', $crop->id)->with('success', 'تم عرض المحصول في السوق بنجاح!');
     }
 
     // Activity Log (all activities)

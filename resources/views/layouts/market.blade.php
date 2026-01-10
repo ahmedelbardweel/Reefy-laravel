@@ -89,9 +89,7 @@
                         <span class="material-symbols-outlined">receipt_long</span>
                     </a>
                     <!-- Chat -->
-                    <a href="{{ route('chat.index') }}" class="flex items-center justify-center rounded-lg size-10 bg-[#f0f4f0] dark:bg-[#253825] hover:bg-primary hover:text-black transition-colors relative" title="{{ __('chat.messages') }}">
-                        <span class="material-symbols-outlined">chat</span>
-                    </a>
+
                     <!-- Cart -->
                     <a href="{{ route('cart.index') }}" class="flex items-center justify-center rounded-lg size-10 bg-[#f0f4f0] dark:bg-[#253825] hover:bg-primary hover:text-black transition-colors relative">
                         <span class="material-symbols-outlined">shopping_cart</span>

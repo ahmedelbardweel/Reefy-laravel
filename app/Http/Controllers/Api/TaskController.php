@@ -25,6 +25,7 @@ class TaskController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'due_date' => 'required|date',
+            'reminder_date' => 'nullable|date',
             'priority' => 'required|in:low,medium,high',
             'crop_id' => 'nullable|exists:crops,id',
         ]);
@@ -48,6 +49,7 @@ class TaskController extends Controller
             'title' => 'sometimes|string|max:255',
             'description' => 'nullable|string',
             'due_date' => 'sometimes|date',
+            'reminder_date' => 'nullable|date',
             'priority' => 'sometimes|in:low,medium,high',
             'crop_id' => 'nullable|exists:crops,id',
             'completed' => 'boolean'

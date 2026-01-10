@@ -209,5 +209,72 @@
         </div>
     </main>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Avatar Preview
+        const avatarInput = document.querySelector('input[name="avatar"]');
+        const avatarContainer = avatarInput.closest('.group');
+        
+        avatarInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Create or update img element
+                    let img = avatarContainer.querySelector('img');
+                    if (!img) {
+                        img = document.createElement('img');
+                        img.className = 'absolute inset-0 w-full h-full object-cover z-0';
+                        avatarContainer.insertBefore(img, avatarContainer.firstChild);
+                        
+                        // Hide the placeholder content slightly or just keep it as overlay on hover?
+                        // Let's hide the placeholder icons to show the image clearly
+                        const placeholder = avatarContainer.querySelector('.z-10');
+                        if(placeholder) placeholder.style.opacity = '0';
+                    }
+                    img.src = e.target.result;
+                    
+                    // Show placeholder on hover for "change" indication
+                    const placeholder = avatarContainer.querySelector('.z-10');
+                    if(placeholder) {
+                       placeholder.classList.add('opacity-0', 'group-hover:opacity-100', 'transition-opacity');
+                       placeholder.style.opacity = ''; // Clear inline style to let class work
+                    }
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Cover Preview
+        const coverInput = document.querySelector('input[name="cover"]');
+        const coverContainer = coverInput.closest('.group');
+
+        coverInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    let img = coverContainer.querySelector('img');
+                    if (!img) {
+                        img = document.createElement('img');
+                        img.className = 'absolute inset-0 w-full h-full object-cover z-0';
+                        coverContainer.insertBefore(img, coverContainer.firstChild);
+                        
+                         const placeholder = coverContainer.querySelector('.flex.flex-col');
+                        if(placeholder) placeholder.style.opacity = '0';
+                    }
+                    img.src = e.target.result;
+                    
+                    const placeholder = coverContainer.querySelector('.flex.flex-col');
+                    if(placeholder) {
+                       placeholder.classList.add('opacity-0', 'group-hover:opacity-100', 'transition-opacity');
+                       placeholder.style.opacity = '';
+                    }
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
 </body>
 </html>

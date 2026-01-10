@@ -51,7 +51,7 @@
                 <nav class="flex items-center gap-9">
                     <a class="text-text-main dark:text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="{{ route('dashboard') }}">{{ __('dashboard') }}</a>
                     <a class="text-text-main dark:text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="{{ route('crops.index') }}">{{ __('crops.title') }}</a>
-                    <a class="text-text-main dark:text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="{{ route('market.index') }}">{{ __('market') }}</a>
+
                     <a class="text-text-main dark:text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="{{ route('profile.setup') }}">{{ __('profile') }}</a>
                 </nav>
                 <div class="flex items-center gap-4">

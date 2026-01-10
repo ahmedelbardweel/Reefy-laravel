@@ -7,3 +7,20 @@
         font-family: 'Noto Sans Arabic', sans-serif;
     }
 }
+
+@layer utilities {
+
+    .rounded,
+    .rounded-sm,
+    .rounded-md,
+    .rounded-lg,
+    .rounded-xl,
+    .rounded-2xl,
+    .rounded-3xl,
+    .rounded-t-xl,
+    .rounded-b-xl,
+    .rounded-t-2xl,
+    .rounded-b-2xl {
+        border-radius: 0px !important;
+    }
+}

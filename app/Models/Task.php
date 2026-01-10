@@ -15,6 +15,7 @@ class Task extends Model
         'title',
         'description',
         'due_date',
+        'reminder_date',
         'priority',
         'status',
         'category',
@@ -23,6 +24,7 @@ class Task extends Model
 
     protected $casts = [
         'due_date' => 'datetime',
+        'reminder_date' => 'datetime',
         'completed_at' => 'datetime',
     ];
 

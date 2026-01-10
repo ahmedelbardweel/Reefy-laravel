@@ -43,12 +43,16 @@ class CommunityController extends Controller
     {
         $validated = $request->validate([
              'content' => 'required|string|max:1000',
+             'type' => 'nullable|in:general,question,tip,marketplace',
              'image' => 'nullable|image|max:2048'
         ]);
         
         if ($request->hasFile('image')) {
              $validated['image'] = $request->file('image')->store('posts', 'public');
         }
+        
+        // Default type to 'general' if not provided
+        $validated['type'] = $validated['type'] ?? 'general';
         
         $post = $request->user()->posts()->create($validated);
         

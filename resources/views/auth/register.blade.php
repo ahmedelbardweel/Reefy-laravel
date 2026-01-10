@@ -48,10 +48,10 @@
             <div class="flex items-center justify-between w-full max-w-[960px] px-6 py-4">
                 <!-- Logo Area -->
                 <div class="flex items-center gap-3 text-text-main dark:text-white cursor-pointer">
-                    <div class="size-8 flex items-center justify-center text-primary">
-                        <span class="material-symbols-outlined !text-3xl">eco</span>
+                    <div class="size-8">
+                        <x-application-logo class="w-full h-full text-primary" />
                     </div>
-                    <h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">AgriMarket</h2>
+                    <h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">{{ __('app.name') }}</h2>
                 </div>
                 <!-- Language Toggle -->
                 <a href="{{ route('lang.switch', app()->getLocale() == 'ar' ? 'en' : 'ar') }}" class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-[#f0f4f0] dark:bg-[#2A3E2A] text-text-main dark:text-white text-sm font-bold hover:bg-gray-200 dark:hover:bg-[#3A4E3A] transition-colors">

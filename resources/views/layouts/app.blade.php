@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
-    <title>{{ __('dashboard') }} - Reefy</title>
+    <title>{{ __('dashboard') }} - {{ __('app.name') }}</title>
     
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -78,6 +78,16 @@
             'GRAD' 0,
             'opsz' 24
         }
+        
+        /* Force Sharp Corners Globally */
+        *:not(.rounded-full):not(#mobile-overlay) {
+            border-radius: 0px !important;
+        }
+        
+        /* Ensure rounded-full keeps circles for avatars/buttons */
+        .rounded-full {
+            border-radius: 9999px !important;
+        }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-main dark:text-white transition-colors duration-200 min-h-screen flex flex-col overflow-hidden">
@@ -87,68 +97,103 @@
 
 <div class="flex h-screen overflow-hidden">
 <!-- Sidebar Navigation -->
-<aside id="main-sidebar" class="w-72 bg-surface-light dark:bg-surface-dark border-l border-border-light dark:border-border-dark flex-col hidden lg:flex transition-all duration-300 z-40 fixed lg:relative h-full {{ app()->getLocale() == 'ar' ? '-right-72 lg:right-0' : '-left-72 lg:left-0' }} shadow-2xl lg:shadow-sm">
-<div class="h-16 flex items-center px-6 border-b border-border-light dark:border-border-dark gap-3">
-<div class="size-8 text-primary flex items-center justify-center">
-<span class="material-symbols-outlined text-4xl">eco</span>
-</div>
-<h1 class="text-xl font-bold tracking-tight">{{ app()->getLocale() == 'ar' ? 'ريفي' : 'Reefy' }}</h1>
-</div>
-<div class="flex flex-col flex-1 overflow-y-auto p-4 gap-6">
-<!-- User Profile Summary -->
-<div class="flex items-center gap-3 p-3 bg-background-light dark:bg-background-dark rounded-xl border border-border-light dark:border-border-dark">
-<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 shrink-0 border-2 border-primary" style='background-image: url("https://ui-avatars.com/api/?name={{ auth()->user()->name }}&background=13ec13&color=000");'></div>
-<div class="flex flex-col overflow-hidden">
-<h2 class="text-sm font-bold truncate">{{ auth()->user()->name }}</h2>
-<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark truncate">{{ auth()->user()->email }}</p>
-</div>
-</div>
-<!-- Navigation Links -->
-<nav class="flex flex-col gap-1">
-<a class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('dashboard') ? 'bg-primary/10 text-primary' : 'text-text-secondary-light dark:text-text-secondary-dark hover:bg-background-light dark:hover:bg-background-dark' }} rounded-lg transition-colors group" href="{{ route('dashboard') }}">
-<span class="material-symbols-outlined {{ request()->routeIs('dashboard') ? 'filled' : '' }} group-hover:text-primary transition-colors">dashboard</span>
-<span class="text-sm {{ request()->routeIs('dashboard') ? 'font-bold' : 'font-medium' }}">{{ __('nav.dashboard') }}</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('crops.*') ? 'bg-primary/10 text-primary' : 'text-text-secondary-light dark:text-text-secondary-dark hover:bg-background-light dark:hover:bg-background-dark' }} rounded-lg transition-colors group" href="{{ route('crops.index') }}">
-<span class="material-symbols-outlined {{ request()->routeIs('crops.*') ? 'filled' : '' }} group-hover:text-primary transition-colors">potted_plant</span>
-<span class="text-sm {{ request()->routeIs('crops.*') ? 'font-bold' : 'font-medium' }}">{{ __('nav.crops') }}</span>
-</a>
-            <a class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('inventory.index') && request('mode') == 'market' ? 'bg-primary/10 text-primary' : 'text-text-secondary-light dark:text-text-secondary-dark hover:bg-background-light dark:hover:bg-background-dark' }} rounded-lg transition-colors group" href="{{ route('inventory.index', ['mode' => 'market']) }}">
-                <span class="material-symbols-outlined {{ request()->routeIs('inventory.index') && request('mode') == 'market' ? 'filled' : '' }} group-hover:text-primary transition-colors">storefront</span>
-                <span class="text-sm {{ request()->routeIs('inventory.index') && request('mode') == 'market' ? 'font-bold' : 'font-medium' }}">{{ __('nav.market') }}</span>
+<aside id="main-sidebar" class="w-72 bg-gradient-to-b from-surface-light to-background-light dark:from-surface-dark dark:to-background-dark border-l border-border-light dark:border-border-dark flex-col hidden lg:flex transition-all duration-300 z-40 fixed lg:relative h-full {{ app()->getLocale() == 'ar' ? '-right-72 lg:right-0' : '-left-72 lg:left-0' }} shadow-2xl lg:shadow-none backdrop-blur-xl">
+    <div class="h-20 flex items-center px-6 border-b border-white/10 gap-3 bg-white/5 backdrop-blur-sm">
+        <div class="size-10 shadow-lg shadow-primary/20">
+            <x-application-logo class="w-full h-full" />
+        </div>
+        <div class="flex flex-col">
+           <h1 class="text-2xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary-dark to-primary">{{ __('app.name') }}</h1>
+           <span class="text-[10px] uppercase tracking-wider font-bold text-text-secondary-light dark:text-text-secondary-dark opacity-70">{{ __('app.professional') }}</span>
+        </div>
+        
+        <!-- Notification Bell -->
+        <a href="{{ route('notifications.index') }}" class="ml-auto relative w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors group">
+            <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">notifications</span>
+            @if(auth()->user()->unreadNotifications->count() > 0)
+                <span class="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[#1a2e1a]"></span>
+            @endif
+        </a>
+    </div>
+
+    <div class="flex flex-col flex-1 overflow-y-auto p-4 gap-6 scrollbar-hide">
+        <!-- User Profile Summary -->
+        <div class="group relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:shadow-lg border border-border-light dark:border-border-dark bg-white/50 dark:bg-black/20 hover:bg-white/80 dark:hover:bg-white/5">
+            <div class="flex items-center gap-4 relative z-10">
+                <div class="relative">
+                    <div class="bg-center bg-no-repeat bg-cover rounded-full size-12 shrink-0 border-2 border-white dark:border-white/10 shadow-md" style='background-image: url("https://ui-avatars.com/api/?name={{ auth()->user()->name }}&background=13ec13&color=fff");'></div>
+                    <div class="absolute bottom-0 right-0 size-3 bg-green-500 rounded-full border-2 border-white dark:border-black"></div>
+                </div>
+                <div class="flex flex-col overflow-hidden">
+                    <h2 class="text-base font-bold truncate text-text-main dark:text-white">{{ auth()->user()->name }}</h2>
+                    <p class="text-xs text-text-secondary-light dark:text-text-secondary-dark truncate font-medium">{{ auth()->user()->email }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="flex flex-col gap-2">
+            <p class="px-4 text-xs font-bold text-text-secondary-light dark:text-text-secondary-dark uppercase tracking-wider opacity-60 mb-1">{{ __('nav.menu') }}</p>
+            
+            @if(auth()->user()->role === 'admin')
+                <a class="flex items-center gap-4 px-4 py-3.5 {{ request()->routeIs('admin.dashboard') ? 'bg-primary text-white shadow-lg shadow-primary/25' : 'text-text-secondary-light dark:text-text-secondary-dark hover:bg-white/60 dark:hover:bg-white/5' }} rounded-xl transition-all duration-300 group font-medium" href="{{ route('admin.dashboard') }}">
+                    <span class="material-symbols-outlined {{ request()->routeIs('admin.dashboard') ? 'filled' : '' }} group-hover:scale-110 transition-transform duration-300">admin_panel_settings</span>
+                    <span class="{{ request()->routeIs('admin.dashboard') ? 'font-bold' : '' }}">{{ __('nav.dashboard') }}</span>
+                    @if(request()->routeIs('admin.dashboard')) <span class="ml-auto size-1.5 rounded-full bg-white/50"></span> @endif
+                </a>
+            @else
+                <a class="flex items-center gap-4 px-4 py-3.5 {{ request()->routeIs('dashboard') ? 'bg-primary text-white shadow-lg shadow-primary/25' : 'text-text-secondary-light dark:text-text-secondary-dark hover:bg-white/60 dark:hover:bg-white/5' }} rounded-xl transition-all duration-300 group font-medium" href="{{ route('dashboard') }}">
+                    <span class="material-symbols-outlined {{ request()->routeIs('dashboard') ? 'filled' : '' }} group-hover:scale-110 transition-transform duration-300">dashboard</span>
+                    <span class="{{ request()->routeIs('dashboard') ? 'font-bold' : '' }}">{{ __('nav.dashboard') }}</span>
+                    @if(request()->routeIs('dashboard')) <span class="ml-auto size-1.5 rounded-full bg-white/50"></span> @endif
+                </a>
+
+                @if(auth()->user()->role !== 'admin')
+                <a class="flex items-center gap-4 px-4 py-3.5 {{ request()->routeIs('crops.*') ? 'bg-primary text-white shadow-lg shadow-primary/25' : 'text-text-secondary-light dark:text-text-secondary-dark hover:bg-white/60 dark:hover:bg-white/5' }} rounded-xl transition-all duration-300 group font-medium" href="{{ route('crops.index') }}">
+                    <span class="material-symbols-outlined {{ request()->routeIs('crops.*') ? 'filled' : '' }} group-hover:scale-110 transition-transform duration-300">potted_plant</span>
+                    <span class="{{ request()->routeIs('crops.*') ? 'font-bold' : '' }}">{{ __('nav.crops') }}</span>
+                    @if(request()->routeIs('crops.*')) <span class="ml-auto size-1.5 rounded-full bg-white/50"></span> @endif
+                </a>
+
+                <a class="flex items-center gap-4 px-4 py-3.5 {{ request()->routeIs('tasks.*') ? 'bg-primary text-white shadow-lg shadow-primary/25' : 'text-text-secondary-light dark:text-text-secondary-dark hover:bg-white/60 dark:hover:bg-white/5' }} rounded-xl transition-all duration-300 group font-medium" href="{{ route('tasks.index') }}">
+                    <span class="material-symbols-outlined {{ request()->routeIs('tasks.*') ? 'filled' : '' }} group-hover:scale-110 transition-transform duration-300">task_alt</span>
+                    <span class="{{ request()->routeIs('tasks.*') ? 'font-bold' : '' }}">{{ __('nav.tasks') }}</span>
+                    @if(request()->routeIs('tasks.*')) <span class="ml-auto size-1.5 rounded-full bg-white/50"></span> @endif
+                </a>
+                @endif
+
+                <a class="flex items-center gap-4 px-4 py-3.5 {{ request()->routeIs('community.*') ? 'bg-primary text-white shadow-lg shadow-primary/25' : 'text-text-secondary-light dark:text-text-secondary-dark hover:bg-white/60 dark:hover:bg-white/5' }} rounded-xl transition-all duration-300 group font-medium" href="{{ route('community.index') }}">
+                    <span class="material-symbols-outlined {{ request()->routeIs('community.*') ? 'filled' : '' }} group-hover:scale-110 transition-transform duration-300">forum</span>
+                    <span class="{{ request()->routeIs('community.*') ? 'font-bold' : '' }}">{{ __('community') }}</span>
+                    @if(request()->routeIs('community.*')) <span class="ml-auto size-1.5 rounded-full bg-white/50"></span> @endif
+                </a>
+            @endif
+
+
+
+        </nav>
+
+        <div class="mt-auto">
+            <div class="h-px bg-gradient-to-r from-transparent via-border-light dark:via-border-dark to-transparent my-4"></div>
+            
+            <a class="flex items-center gap-4 px-4 py-3.5 {{ request()->routeIs('settings.*') ? 'bg-white/10 text-text-main dark:text-white' : 'text-text-secondary-light dark:text-text-secondary-dark hover:bg-white/60 dark:hover:bg-white/5' }} rounded-xl transition-all duration-300 group font-medium" href="{{ route('settings.index') }}">
+                <span class="material-symbols-outlined group-hover:rotate-45 transition-transform duration-500">settings</span>
+                <span class="text-sm">{{ __('nav.settings') }}</span>
             </a>
-            <a class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('chat.*') ? 'bg-primary/10 text-primary' : 'text-text-secondary-light dark:text-text-secondary-dark hover:bg-background-light dark:hover:bg-background-dark' }} rounded-lg transition-colors group" href="{{ route('chat.index') }}">
-                <span class="material-symbols-outlined {{ request()->routeIs('chat.*') ? 'filled' : '' }} group-hover:text-primary transition-colors">chat</span>
-                <span class="text-sm {{ request()->routeIs('chat.*') ? 'font-bold' : 'font-medium' }}">{{ __('nav.chat') }}</span>
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('tasks.*') ? 'bg-primary/10 text-primary' : 'text-text-secondary-light dark:text-text-secondary-dark hover:bg-background-light dark:hover:bg-background-dark' }} rounded-lg transition-colors group" href="{{ route('tasks.index') }}">
-                <span class="material-symbols-outlined {{ request()->routeIs('tasks.*') ? 'filled' : '' }} group-hover:text-primary transition-colors">task_alt</span>
-                <span class="text-sm {{ request()->routeIs('tasks.*') ? 'font-bold' : 'font-medium' }}">{{ __('nav.tasks') }}</span>
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('inventory.*') && request('mode') != 'market' ? 'bg-primary/10 text-primary' : 'text-text-secondary-light dark:text-text-secondary-dark hover:bg-background-light dark:hover:bg-background-dark' }} rounded-lg transition-colors group" href="{{ route('inventory.index') }}">
-                <span class="material-symbols-outlined {{ request()->routeIs('inventory.*') && request('mode') != 'market' ? 'filled' : '' }} group-hover:text-primary transition-colors">inventory_2</span>
-                <span class="text-sm {{ request()->routeIs('inventory.*') && request('mode') != 'market' ? 'font-bold' : 'font-medium' }}">{{ __('nav.inventory') }}</span>
-            </a>
-</nav>
-<div class="mt-auto">
-<div class="h-px bg-border-light dark:bg-border-dark my-2"></div>
-<a class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('settings.*') ? 'bg-primary/10 text-primary' : 'text-text-secondary-light dark:text-text-secondary-dark hover:bg-background-light dark:hover:bg-background-dark' }} rounded-lg transition-colors group" href="{{ route('settings.index') }}">
-<span class="material-symbols-outlined group-hover:text-primary transition-colors">settings</span>
-<span class="text-sm font-medium">{{ __('nav.settings') }}</span>
-</a>
-<form action="{{ route('logout') }}" method="POST">
-@csrf
-<button type="submit" class="w-full flex items-center gap-3 px-4 py-3 text-text-secondary-light dark:text-text-secondary-dark hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 rounded-lg transition-colors group">
-<span class="material-symbols-outlined transition-colors">logout</span>
-<span class="text-sm font-medium">{{ __('nav.logout') }}</span>
-</button>
-</form>
-</div>
-</div>
+            
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="w-full flex items-center gap-4 px-4 py-3.5 text-red-500 hover:bg-red-500/10 rounded-xl transition-all duration-300 group font-bold mt-2">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform duration-300 rtl:group-hover:-translate-x-1">logout</span>
+                    <span class="text-sm">{{ __('nav.logout') }}</span>
+                </button>
+            </form>
+        </div>
+    </div>
 </aside>
 
 <!-- Main Content Area -->
-<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<main class="flex-1 flex flex-col h-full overflow-y-auto relative scroll-smooth">
 @yield('content')
 </main>
 </div>

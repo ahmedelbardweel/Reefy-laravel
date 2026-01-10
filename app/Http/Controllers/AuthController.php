@@ -60,8 +60,8 @@ class AuthController extends Controller
         Auth::login($user);
         
         // Redirect based on role
-        if ($user->role === 'client') {
-            return redirect()->route('client.dashboard');
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard');
         }
         
         return redirect()->route('profile.setup');
@@ -90,8 +90,8 @@ class AuthController extends Controller
         }
 
         // Redirect based on role
-        if ($user->role === 'client') {
-            return redirect()->route('client.dashboard');
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard');
         }
 
         if (!$user->profile_completed) {

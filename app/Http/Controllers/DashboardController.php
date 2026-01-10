@@ -22,24 +22,9 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
 
-        // --- Client Dashboard Logic ---
-        if ($user->role === 'client') {
-            // Get recent products for the client dashboard overview
-            $recentProducts = \App\Models\Product::where('is_market_listed', true)
-                ->with('user')
-                ->latest()
-                ->take(5)
-                ->get();
-            
-            // Fetch real stats for client
-            $stats = [
-                'active_orders' => 0, // No orders table yet
-                'cart_items' => $user->cart ? $user->cart->items()->count() : 0,
-                'saved_items' => 0 // No favorites table yet
-            ];
+        // --- Admin Tips ---
+        $tips = \App\Models\Post::where('type', 'tip')->latest()->take(3)->get();
 
-            return view('client.dashboard', compact('recentProducts', 'stats'));
-        }
 
         // --- Farmer Dashboard Logic ---
 
@@ -55,17 +40,26 @@ class DashboardController extends Controller
             ->get();
         
         // Calculate crop progress
+        // Calculate crop progress
         $crops = $crops->map(function ($crop) {
-            $plantingDate = \Carbon\Carbon::parse($crop->planting_date);
+            // Ensure planting_date is a Carbon instance, default to now if missing/null
+            $plantingDate = $crop->planting_date ? \Carbon\Carbon::parse($crop->planting_date) : now();
+            
+            // Handle harvest_date carefully
             $harvestDate = $crop->harvest_date ? \Carbon\Carbon::parse($crop->harvest_date) : null;
             
             if ($harvestDate) {
-                $totalDays = $plantingDate->diffInDays($harvestDate);
+                // Determine total duration
+                $totalDays = $plantingDate->diffInDays($harvestDate) ?: 1; // Prevent division by zero
                 $elapsedDays = $plantingDate->diffInDays(now());
-                $crop->progress = min(100, round(($elapsedDays / $totalDays) * 100));
+                
+                // Calculate progress safely
+                $crop->progress = min(100, max(0, round(($elapsedDays / $totalDays) * 100)));
+                
+                // Days remaining
                 $crop->days_to_harvest = max(0, $harvestDate->diffInDays(now()));
             } else {
-                $crop->progress = $crop->water_level; // Fallback
+                $crop->progress = $crop->water_level ?? 0; // Fallback
                 $crop->days_to_harvest = null;
             }
             
@@ -106,7 +100,7 @@ class DashboardController extends Controller
         // Get water consumption for the last 7 days
         $chartData = $this->getWaterConsumptionData();
 
-        return view('dashboard', compact('weather', 'crops', 'tasks', 'chartData', 'unreadCount'));
+        return view('dashboard', compact('weather', 'crops', 'tasks', 'chartData', 'unreadCount', 'tips'));
     }
 
     private function getWaterConsumptionData()

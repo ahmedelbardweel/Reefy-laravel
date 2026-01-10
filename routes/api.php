@@ -16,7 +16,6 @@ use App\Http\Controllers\Api\SettingsController;
 use App\Http\Controllers\Api\NegotiationController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProfileController;
-use App\Http\Controllers\Api\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,16 +70,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Inventory Management
     Route::apiResource('inventory', InventoryController::class);
-    Route::post('/inventory/{inventory}/sell', [InventoryController::class, 'listOnMarket']);
-
-    // Market & Cart
-    Route::get('/market', [MarketController::class, 'index']);
-    Route::get('/market/{product}', [MarketController::class, 'show']);
-    
-    Route::get('/cart', [CartController::class, 'index']);
-    Route::post('/cart/add', [CartController::class, 'add']);
-    Route::delete('/cart/{item}', [CartController::class, 'remove']);
-    Route::post('/cart/checkout', [CartController::class, 'checkout']);
+    // Route::post('/inventory/{inventory}/sell', [InventoryController::class, 'listOnMarket']); // Market is removed
 
     // Community (Social)
     Route::get('/community/profile', [CommunityController::class, 'myProfile']); // New Profile Route
@@ -92,27 +82,25 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Chat
     Route::get('/chats', [ChatController::class, 'index']);
-    Route::get('/chats/start/{product}', [ChatController::class, 'start']);
+    // Route::get('/chats/start/{product}', [ChatController::class, 'start']); // Removed product chat
     Route::get('/chats/user/{otherUser}', [ChatController::class, 'startWithUser']);
     Route::get('/chats/{conversation}', [ChatController::class, 'show']);
     Route::post('/chats/{conversation}/send', [ChatController::class, 'send']);
-
-    // Negotiation
-    Route::post('/negotiation/{negotiation}/update', [NegotiationController::class, 'update']);
-    Route::post('/negotiation/{negotiation}/confirm', [NegotiationController::class, 'confirm']);
-
-    // Orders
-    Route::get('/orders', [OrderController::class, 'index']);
-    Route::get('/orders/{order}', [OrderController::class, 'show']);
 
     // Profile Completion
     Route::get('/complete-profile', [ProfileController::class, 'setup']);
     Route::post('/complete-profile', [ProfileController::class, 'complete']);
 
-    // Client Dashboard
-    Route::get('/client-dashboard', [ClientController::class, 'index']);
+    // Scenario / Smart Advice
+    Route::get('/scenarios/analyze', [\App\Http\Controllers\Api\ScenarioController::class, 'analyze']);
+});
 
-    // Product Reviews
-    Route::post('/products/{product}/review', [InventoryController::class, 'storeReview']);
+/* ======================================================================
+   ADMIN ROUTES
+   ====================================================================== */
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [\App\Http\Controllers\Api\AdminController::class, 'dashboard']);
+    Route::post('/advice', [\App\Http\Controllers\Api\AdminController::class, 'storeAdvice']);
+    Route::delete('/posts/{id}', [\App\Http\Controllers\Api\AdminController::class, 'deletePost']);
 });
 

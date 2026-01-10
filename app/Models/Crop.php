@@ -13,12 +13,24 @@ class Crop extends Model
         'user_id',
         'name',
         'type',
+        'area',
         'planting_date',
         'harvest_date',
         'status',
         'water_level',
         'image_url',
         'field_name',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'planting_date' => 'date',
+        'harvest_date' => 'date',
+        'water_level' => 'integer',
     ];
 
     /**

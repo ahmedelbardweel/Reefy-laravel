@@ -46,10 +46,7 @@
         
         <!-- Filters -->
         <div class="flex flex-wrap items-center gap-3">
-            <a href="{{ route('tasks.index') }}" class="flex h-10 items-center justify-center gap-x-2 rounded-xl {{ !request('filter') ? 'bg-text-main dark:bg-white text-white dark:text-text-main' : 'bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark hover:border-primary' }} px-5 transition-all">
-                <p class="text-sm {{ !request('filter') ? 'font-bold' : 'font-medium' }}">{{ __('tasks.filter.all') }}</p>
-                <span class="bg-white/20 dark:bg-black/10 px-1.5 py-0.5 rounded text-xs font-bold">{{ $allTasks->count() }}</span>
-            </a>
+
             <a href="{{ route('tasks.index', ['filter' => 'today']) }}" class="flex h-10 items-center justify-center gap-x-2 rounded-xl {{ request('filter') == 'today' ? 'bg-text-main dark:bg-white text-white dark:text-text-main' : 'bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark hover:border-primary' }} px-5 transition-all">
                 <p class="text-sm {{ request('filter') == 'today' ? 'font-bold' : 'font-medium' }}">{{ __('tasks.filter.today') }}</p>
                 <span class="{{ request('filter') == 'today' ? 'bg-white/20 dark:bg-black/10' : 'bg-background-light dark:bg-background-dark text-text-secondary-light dark:text-text-secondary-dark' }} px-1.5 py-0.5 rounded text-xs font-bold">{{ $todayTasks->count() }}</span>
@@ -73,7 +70,7 @@
             </div>
             
             @forelse($tasks as $task)
-            <div id="task-card-{{ $task->id }}" class="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-surface-light dark:bg-surface-dark p-4 rounded-xl border border-border-light dark:border-border-dark shadow-sm hover:shadow-md hover:border-primary/50 transition-all cursor-pointer {{ $task->completed ? 'opacity-75 hover:opacity-100' : '' }} {{ $task->is_overdue && !$task->completed ? 'border-s-4 border-s-red-500' : '' }}">
+            <div id="task-card-{{ $task->id }}" class="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-surface-light dark:bg-surface-dark p-4 rounded-xl border border-border-light dark:border-border-dark shadow-sm hover:shadow-md hover:border-primary/50 transition-all {{ $task->completed ? 'opacity-75 hover:opacity-100' : '' }} {{ $task->is_overdue && !$task->completed ? 'border-s-4 border-s-red-500' : '' }}">
                 <div class="flex items-start gap-4 w-full">
                     <div class="pt-1">
                         <input type="checkbox" {{ $task->completed ? 'checked' : '' }} onchange="toggleTask(event, {{ $task->id }})" class="size-5 rounded border-2 border-gray-300 text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer"/>
@@ -113,11 +110,23 @@
                         </div>
                     </div>
                 </div>
-                @if(!$task->completed)
-                <div class="hidden sm:flex shrink-0 items-center justify-center size-10 rounded-full bg-background-light dark:bg-background-dark text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
-                    <span class="material-symbols-outlined">chevron_{{ app()->getLocale() == 'ar' ? 'right' : 'left' }}</span>
+                
+                <!-- Action Buttons -->
+                <div class="flex items-center gap-1 shrink-0">
+                    <a href="{{ route('tasks.show', $task->id) }}" class="size-9 rounded-lg bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/40 flex items-center justify-center transition-colors group-action" title="{{ __('view_details') }}">
+                        <span class="material-symbols-outlined text-[20px] text-blue-600">visibility</span>
+                    </a>
+                    <a href="{{ route('tasks.edit', $task->id) }}" class="size-9 rounded-lg bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/40 flex items-center justify-center transition-colors group-action" title="{{ __('edit') }}">
+                        <span class="material-symbols-outlined text-[20px] text-green-600">edit</span>
+                    </a>
+                    <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" onsubmit="return confirm('{{ __('confirm_delete') }}')" class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="size-9 rounded-lg bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/40 flex items-center justify-center transition-colors group-action" title="{{ __('delete') }}">
+                            <span class="material-symbols-outlined text-[20px] text-red-600">delete</span>
+                        </button>
+                    </form>
                 </div>
-                @endif
             </div>
             @empty
             <div class="text-center py-12">

@@ -46,10 +46,10 @@
         <!-- Top Header -->
         <header class="flex items-center justify-between px-6 py-5 lg:px-12 lg:py-8">
             <div class="flex items-center gap-3">
-                <div class="flex items-center justify-center size-10 rounded-xl bg-primary/20 text-text-main dark:text-white">
-                     <span class="material-symbols-outlined !text-3xl text-primary">eco</span>
+                <div class="size-10">
+                     <x-application-logo class="w-full h-full" />
                 </div>
-                <h2 class="text-xl font-bold leading-tight tracking-[-0.015em] text-text-main dark:text-white">AgriMarket</h2>
+                <h2 class="text-xl font-bold leading-tight tracking-[-0.015em] text-text-main dark:text-white">{{ __('app.name') }}</h2>
             </div>
             <a href="{{ route('lang.switch', app()->getLocale() == 'ar' ? 'en' : 'ar') }}" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-background-light dark:bg-white/5 hover:bg-border-light dark:hover:bg-white/10 transition-colors">
                 <span class="material-symbols-outlined text-lg text-text-main dark:text-white">language</span>

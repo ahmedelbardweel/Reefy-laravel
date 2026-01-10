@@ -114,7 +114,7 @@
                         @endif
                         
                         <!-- Reply Form (Hidden by default) -->
-                        <form action="{{ route('community.comment', $post) }}" method="POST" class="mt-3 hidden reply-form" id="reply-form-{{ $comment->id }}">
+                        <form action="{{ route('community.comment.store', $post) }}" method="POST" class="mt-3 hidden reply-form" id="reply-form-{{ $comment->id }}">
                             @csrf
                             <input type="hidden" name="parent_id" value="{{ $comment->id }}">
                             <div class="flex items-center gap-2">
@@ -143,7 +143,7 @@
     @if(Auth::id() != $post->user_id)
     <div class="fixed bottom-20 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 z-50 shadow-lg">
         <div class="max-w-md md:max-w-3xl mx-auto px-5 py-4">
-            <form action="{{ route('community.comment', $post) }}" method="POST" class="flex items-center gap-3">
+            <form action="{{ route('community.comment.store', $post) }}" method="POST" class="flex items-center gap-3">
                 @csrf
                 <div class="w-8 h-8 rounded-full bg-slate-100 overflow-hidden shrink-0 border-2 border-primary/30">
                      <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAseTHkQVGEWevD9ODCBjnX5J3m5B3oRlqcNeL7eR9DhcI9kWSXdDVea84ROc3OIItDRsGov4m_Ci4bA8K53kcQsDrOR611uMr7Jq0gx1qkPHm2qw8sNPfEn2u0MftWHUGS5JXv86gd-oQsB8vh-U_xRBfg63xxGPzGl0B63BNlFWF_yjpurTmgqnq92gi_03CD3bHHnE6yWCaNQIdfgdCEMsLAGw26QA8iSXLn5mgXuFB4pZ2iub2WjYNpHOeklng7HHN6RLqWHzw');"></div>

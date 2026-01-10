@@ -14,26 +14,45 @@ class ReportController extends Controller
     {
         $user = $request->user();
         
-        // Basic stats
+        // --- Activity Stats ---
         $activeCrops = $user->crops()->where('status', '!=', 'harvested')->count();
         $harvestedCrops = $user->crops()->where('status', 'harvested')->count();
         
-        // Products stats
+        // --- Task Performance ---
+        $totalTasks = $user->tasks()->count();
+        $completedTasks = $user->tasks()->where('status', 'completed')->orWhere('completed', true)->count();
+        $completionRate = $totalTasks > 0 ? round(($completedTasks / $totalTasks) * 100) : 0;
+        
+        $pendingHighPriority = $user->tasks()
+            ->where('priority', 'high')
+            ->where('status', '!=', 'completed')
+            ->count();
+
+        // --- products Stats ---
         $listedProducts = Product::where('user_id', $user->id)->count();
         
-        // Financials (Mock logic based on Orders)
-        // Assuming Order model has 'total_amount' and links to products owned by user
-        // This query might need adjustment based on actual Order-Product relationship
-        $totalSales = 0; 
-        // Logic: Find orders containing user's products. For simplicity, mocking a value or simple sum if relationship exists.
-        // Assuming we don't have a complex OrderItem relationship fully defined for this quick implementation, 
-        // we'll return basic counts and placeholder financials or use what's available.
+        // --- Financial & Yield (Mocking logic based on potential data) ---
+        // Projected Yield Efficiency: (Harvested / (Harvested + Active)) * 100 roughly
+        $totalCrops = $activeCrops + $harvestedCrops;
+        $yieldEfficiency = $totalCrops > 0 ? round(($harvestedCrops / $totalCrops) * 100) : 0;
+
+        // Financial Health (Mock)
+        $totalSales = 0; // detailed logic would sum Order items for this user.
+        // For now, let's keep it simple or zero if no orders yet.
         
         return response()->json([
-            'active_crops_count' => $activeCrops,
-            'harvested_crops_count' => $harvestedCrops,
-            'products_listed_count' => $listedProducts,
-            'total_sales' => $totalSales, // Placeholder until deep order logic is verified
+            'metrics' => [
+                'active_crops_count' => $activeCrops,
+                'harvested_crops_count' => $harvestedCrops,
+                'products_listed_count' => $listedProducts,
+                'task_completion_rate' => $completionRate,
+                'yield_efficiency' => $yieldEfficiency,
+                'pending_high_priority_tasks' => $pendingHighPriority,
+            ],
+            'financials' => [
+                'total_sales' => $totalSales,
+                'currency' => 'SAR' // or default
+            ],
             'recent_activities' => [] // Could fetch from logs if a Log model existed
         ]);
     }

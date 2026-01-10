@@ -10,10 +10,7 @@
             </a>
 
             <!-- Shop (Market) -->
-            <a class="flex flex-col items-center gap-1 w-16 {{ request()->routeIs('market.*') ? 'text-primary' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300' }} transition-colors" href="{{ route('market.index') }}">
-                <span class="material-symbols-outlined {{ request()->routeIs('market.*') ? 'fill-current' : '' }}">storefront</span>
-                <span class="text-[10px] {{ request()->routeIs('market.*') ? 'font-bold' : 'font-medium' }}">{{ __('market') }}</span>
-            </a>
+
 
             <!-- Cart (Center) -->
             <div class="-mt-8 relative z-50">
@@ -24,12 +21,6 @@
                 </a>
                 <span class="block text-center text-[10px] font-bold mt-1 {{ request()->routeIs('cart.*') ? 'text-primary' : 'text-slate-900 dark:text-slate-400' }}">{{ __('cart') }}</span>
             </div>
-
-            <!-- Chat / Negotiations -->
-            <a class="flex flex-col items-center gap-1 w-16 {{ request()->routeIs('chat.*') ? 'text-primary' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300' }} transition-colors" href="{{ route('chat.index') }}">
-                <span class="material-symbols-outlined {{ request()->routeIs('chat.*') ? 'fill-current' : '' }}">chat</span>
-                <span class="text-[10px] {{ request()->routeIs('chat.*') ? 'font-bold' : 'font-medium' }}">{{ __('chats') }}</span>
-            </a>
 
              <!-- Settings -->
             <a class="flex flex-col items-center gap-1 w-16 {{ request()->routeIs('settings.*') ? 'text-primary' : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300' }} transition-colors" href="{{ route('settings.index') }}">

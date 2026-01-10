@@ -51,7 +51,7 @@
                 <nav class="flex items-center gap-9">
                     <a class="text-text-main dark:text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="{{ route('dashboard') }}">{{ __('dashboard') }}</a>
                     <a class="text-text-main dark:text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="{{ route('crops.index') }}">{{ __('crops.title') }}</a>
-                    <a class="text-text-main dark:text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="{{ route('market.index') }}">{{ __('market') }}</a>
+
                     <a class="text-text-main dark:text-white hover:text-primary transition-colors text-sm font-medium leading-normal" href="{{ route('profile.setup') }}">{{ __('profile') }}</a>
                 </nav>
                 <div class="flex items-center gap-4">
@@ -158,7 +158,36 @@
                                     </div>
                                 </label>
                             </div>
+
+                            <!-- Area Field (New) -->
+                            <div class="mb-2">
+                                <label class="flex flex-col w-full">
+                                    <p class="text-text-main dark:text-white text-base font-medium pb-2">{{ __('crops.area') }} (m²)</p>
+                                    <div class="relative">
+                                        <input name="area" type="number" step="0.01" class="w-full rounded-lg text-text-main dark:text-white bg-white dark:bg-background-dark border border-border-light dark:border-border-dark focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 pl-10 text-base placeholder:text-text-secondary/60 outline-none transition-all" placeholder="e.g. 500" required/>
+                                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary pointer-events-none">square_foot</span>
+                                    </div>
+                                </label>
+                            </div>
                         </div>
+
+<script>
+    // Image Preview Script
+    document.querySelector('input[name="image"]').addEventListener('change', function(e) {
+        if (e.target.files && e.target.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                // Find the div with the background image
+                const previewDiv = document.querySelector('.group.relative.aspect-square .bg-cover');
+                if (previewDiv) {
+                    previewDiv.style.backgroundImage = `url('${e.target.result}')`;
+                    previewDiv.style.opacity = '1';
+                }
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    });
+</script>
 
                         <!-- Section 2: Logistics & Dates -->
                         <div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl shadow-sm border border-border-light dark:border-border-dark">

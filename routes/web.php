@@ -36,12 +36,12 @@ Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])-
 Route::get('/complete-profile', [\App\Http\Controllers\ProfileController::class, 'setup'])->middleware('auth')->name('profile.setup');
 Route::post('/complete-profile', [\App\Http\Controllers\ProfileController::class, 'complete'])->middleware('auth')->name('profile.complete');
 
-// Dashboard Route (Redirects based on role if accessed directly)
-Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth', 'role:farmer'])->name('dashboard');
-Route::get('/client-dashboard', [\App\Http\Controllers\ClientController::class, 'index'])->middleware(['auth', 'role:client'])->name('client.dashboard');
+// Dashboard Route
+Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+
 
 /* ======================================================================
-   SHARED ROUTES (Accessible by both, actions restricted in controller/view)
+   SHARED ROUTES (Accessible by all authenticated users)
    ====================================================================== */
 Route::middleware('auth')->group(function () {
     // Settings & Profile
@@ -53,27 +53,31 @@ Route::middleware('auth')->group(function () {
     Route::post('/settings/preferences', [\App\Http\Controllers\SettingsController::class, 'updatePreferences'])->name('settings.preferences.update');
     Route::post('/settings/notifications/toggle', [\App\Http\Controllers\SettingsController::class, 'toggleNotification'])->name('settings.notifications.toggle');
 
-    // Chat / Negotiation (Viewing)
-    Route::get('/chat', [\App\Http\Controllers\ChatController::class, 'index'])->name('chat.index');
-    Route::get('/chat/{conversation}', [\App\Http\Controllers\ChatController::class, 'show'])->name('chat.show');
-    Route::post('/chat/{conversation}/send', [\App\Http\Controllers\ChatController::class, 'send'])->name('chat.send');
+    // Notifications
+    Route::get('/notifications', [App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('/notifications/{id}/read', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::post('/notifications/read-all', [App\Http\Controllers\NotificationController::class, 'markAllAsRead'])->name('notifications.readAll');
 
-    // Market Viewing
-    Route::get('/market', [\App\Http\Controllers\MarketController::class, 'index'])->name('market.index');
-    Route::get('/market/{product}', [\App\Http\Controllers\MarketController::class, 'show'])->name('market.show');
-    Route::get('/products/{product}', [\App\Http\Controllers\InventoryController::class, 'show'])->name('inventory.show');
-
-    // Negotiation Actions (Shared)
-    Route::post('/negotiation/{negotiation}/update', [\App\Http\Controllers\NegotiationController::class, 'update'])->name('negotiation.update');
-    Route::post('/negotiation/{negotiation}/confirm', [\App\Http\Controllers\NegotiationController::class, 'confirm'])->name('negotiation.confirm');
-
+    // Community Routes
+    Route::prefix('community')->group(function () {
+        Route::get('/', [\App\Http\Controllers\CommunityController::class, 'index'])->name('community.index');
+        Route::post('/', [\App\Http\Controllers\CommunityController::class, 'store'])->name('community.store');
+        Route::get('/profile', [\App\Http\Controllers\CommunityController::class, 'myProfile'])->name('community.profile');
+        Route::get('/{post}', [\App\Http\Controllers\CommunityController::class, 'show'])->name('community.show');
+        Route::post('/{post}/like', [\App\Http\Controllers\CommunityController::class, 'like'])->name('community.like');
+        Route::post('/{post}/comment', [\App\Http\Controllers\CommunityController::class, 'storeComment'])->name('community.comment.store');
+        Route::post('/comments/{comment}/like', [\App\Http\Controllers\CommunityController::class, 'likeComment'])->name('community.comment.like');
+    });
 });
 
 
 /* ======================================================================
-   FARMER ROUTES (Role: farmer)
+   FARMER / ADMIN ROUTES (Management Features)
    ====================================================================== */
-Route::middleware(['auth', 'role:farmer'])->prefix('farmer')->group(function () {
+// For now, we allow any auth user to access "farmer" features or we can restrict if needed.
+// Given "Remove everything related to client", we assume everyone can farm?
+// Or we keep 'role:farmer' but everyone IS a farmer now. I'll remove the strict role check for simpler transition, or set default role to farmer.
+Route::middleware(['auth'])->prefix('farmer')->group(function () {
     
     // Crops Management
     Route::get('/crops', [\App\Http\Controllers\CropController::class, 'index'])->name('crops.index');
@@ -88,7 +92,6 @@ Route::middleware(['auth', 'role:farmer'])->prefix('farmer')->group(function () 
     Route::post('/crops/{id}/irrigate', [\App\Http\Controllers\CropController::class, 'irrigate'])->name('crops.irrigate');
     Route::post('/crops/{id}/harvest', [\App\Http\Controllers\CropController::class, 'harvest'])->name('crops.harvest');
     Route::get('/crops/{id}/growth-report', [\App\Http\Controllers\CropController::class, 'growthReport'])->name('crops.growth-report');
-    Route::post('/crops/{id}/sell-to-market', [\App\Http\Controllers\CropController::class, 'sellToMarket'])->name('crops.sell-to-market');
     Route::get('/crops/{id}/activity-log', [\App\Http\Controllers\CropController::class, 'activityLog'])->name('crops.activity-log');
 
     // Tasks Management
@@ -98,51 +101,19 @@ Route::middleware(['auth', 'role:farmer'])->prefix('farmer')->group(function () 
     // Irrigation Management
     Route::get('/irrigations', [\App\Http\Controllers\IrrigationController::class, 'index'])->name('irrigations.index');
     
-    // Inventory & Selling
+    // Inventory
     Route::resource('inventory', \App\Http\Controllers\InventoryController::class);
-    Route::get('/inventory/{inventory}/sell', [\App\Http\Controllers\InventoryController::class, 'sellView'])->name('inventory.sell.view');
-    Route::post('/inventory/{inventory}/sell', [\App\Http\Controllers\InventoryController::class, 'listOnMarket'])->name('inventory.sell.action');
 
     // Reports
     Route::get('/reports', [\App\Http\Controllers\ReportController::class, 'index'])->name('reports.index');
-
-    // Community (Is this farmer only? Assuming Shared for now, but keeping here if requested. Moving to shared if needed).
-    // Let's keep Community shared? The user didn't specify. I'll put it in Shared for now, or duplicates.
-    // Actually, usually community is for everyone. I'll move it to Shared.
 });
 
 /* ======================================================================
-   CLIENT ROUTES (Role: client)
+   ADMIN ROUTES
    ====================================================================== */
-Route::middleware(['auth', 'role:client'])->prefix('client')->group(function () {
-    
-    // Market Actions (Buying / Generic)
-    Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart/add', [\App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
-    Route::delete('/cart/{item}', [\App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
-    Route::post('/cart/checkout', [\App\Http\Controllers\CartController::class, 'checkout'])->name('cart.checkout');
-
-    // Orders
-    Route::resource('orders', \App\Http\Controllers\OrderController::class)->only(['index', 'show']);
-
-    // Negotiation Initiation
-    Route::get('/chat/start/{product}', [\App\Http\Controllers\ChatController::class, 'start'])->name('chat.start');
-    Route::get('/chat/user/{otherUser}', [\App\Http\Controllers\ChatController::class, 'startWithUser'])->name('chat.user');
-    
-    // Reviews
-    Route::post('/products/{product}/review', [\App\Http\Controllers\InventoryController::class, 'storeReview'])->name('product.review');
-});
-
-/* ======================================================================
-   COMMUNITY ROUTES (Shared)
-   ====================================================================== */
-Route::middleware('auth')->group(function () {
-    Route::get('/community/profile', [\App\Http\Controllers\CommunityController::class, 'myProfile'])->name('community.profile');
-    Route::get('/community/{post}', [\App\Http\Controllers\CommunityController::class, 'show'])->name('community.show');
-    Route::get('/community', [\App\Http\Controllers\CommunityController::class, 'index'])->name('community.index');
-    Route::post('/community', [\App\Http\Controllers\CommunityController::class, 'store'])->name('community.store');
-    Route::post('/community/{post}/comment', [\App\Http\Controllers\CommunityController::class, 'storeComment'])->name('community.comment');
-    Route::post('/community/{post}/like', [\App\Http\Controllers\CommunityController::class, 'like'])->name('community.like');
-    Route::post('/comments/{comment}/like', [\App\Http\Controllers\CommunityController::class, 'likeComment'])->name('comment.like');
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.dashboard');
+    Route::post('/advice', [\App\Http\Controllers\AdminController::class, 'storeAdvice'])->name('admin.advice.store');
+    Route::delete('/users/{id}', [\App\Http\Controllers\AdminController::class, 'destroyUser'])->name('admin.users.delete');
 });
 
